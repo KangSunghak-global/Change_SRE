@@ -120,6 +120,7 @@ def main():
                 if MCU_file_name == None:
                     print("Please add to MCU file")
                 else:
+                    print("MCU file exist")
                     file_integrate(filepath, Switch1Name, Switch2Name, MCU_file_name)
 
             else:

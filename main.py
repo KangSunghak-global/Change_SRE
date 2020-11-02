@@ -9,8 +9,8 @@ import os
 import binascii
 
 # Flash Programming Start Address
-#fl_addr = 0x01050000  # siwthch1
-fl_addr = 0x01090000 # switch2
+fl_addr = 0x01050000  # siwthch1
+#fl_addr = 0x01090000 # switch2
 if __name__ == '__main__':
 
     # path = os.getcwd()
