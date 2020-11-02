@@ -10,8 +10,9 @@ filepath = os.path.join(Curruntpath, 'file')
 switch1_file = "bcm89530c1_br100_evk_avb-switch_erika_S1.img"
 switch2_file = "bcm89530c1_br100_evk_avb-switch_erika_S2.img"
 
-def Switch_BinaryToSre(img_name):
+def Switch_BinaryToSre(img_path):
     read_length = 28
+    img_name = os.path.basename(img_path)
     if img_name == switch1_file:
         fl_addr = 0x01050000 #  MCU flash start address of switch1
         srec_name = img_name.split('.')[0] + '_sw1.srec'
@@ -19,7 +20,7 @@ def Switch_BinaryToSre(img_name):
         fl_addr = 0x01090000 # MCU flash start address of switch2
         srec_name = img_name.split('.')[0] + '_sw2.srec'
 
-    with open(img_name, 'rb') as img:
+    with open(img_path, 'rb') as img:
         with open(srec_name, 'w') as srec:
 
             # Header Record
@@ -110,10 +111,12 @@ def main():
         print("OK")
         if(os.path.exists(filepath + "\\" + switch1_file)):
             print("switch1 file exist")
-            Switch1Name = Switch_BinaryToSre(switch1_file)
+            img_path = filepath + "\\" + switch1_file
+            Switch1Name = Switch_BinaryToSre(img_path)
             if (os.path.exists(filepath + "\\" + switch2_file)):
                 print("switch2 file exist")
-                Switch2Name = Switch_BinaryToSre(switch2_file)
+                img_path2 = filepath + "\\" + switch2_file
+                Switch2Name = Switch_BinaryToSre(img_path2)
 
                 MCU_file_name = MCU_File_serch(filepath) # MCU File serching
 
